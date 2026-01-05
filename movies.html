@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #d1,#d2,#d3 {
+            display: flex;
+            flex-wrap: wrap; 
+            ;
+        } 
+
+        #d1 li, #d2 li, #d3 li {
+            list-style: none;
+            border: 1px solid gray;
+            margin: 10px; 
+            padding: 10px;  
+            width: 300px; 
+        }
+
+        .ninties {
+            background-color: rgb(86, 104, 110);
+        }
+
+        .twenties {
+            background-color: rgb(137, 78, 87);
+        }
+    </style>
+</head>
+
+<body>
+    <ul id="d1">
+
+    </ul>
+    <ul id="d2"></ul>
+    <ul id="d3"></ul>
+    <script src ="moviesjs.js"></script>
+         <script>
+        for (var i = 0; i <= moviesjs.length - 1; i++) {
+            var nli = document.createElement("li")
+
+            var nh1 = document.createElement("h1")
+            nh1.innerText = "Movie:" + moviesjs[i].title;
+
+            var nh2 = document.createElement("h3")
+            nh2.innerText = "Year:" +moviesjs[i].year
+
+            var nh3 = document.createElement("h2")
+            nh3.innerText = "Director:" + moviesjs[i].director
+
+            var nh4 = document.createElement("img")
+            nh4.src = moviesjs[i].imageUrl
+            nh4.width = 200
+
+            var nh5 = document.createElement("p")
+            nh5.innerHTML = "<b>Genre:</b> " + moviesjs[i].genre
+
+            var nh6 = document.createElement("p")
+            nh6.innerHTML = "<b>Plot:</b> " + moviesjs[i].plot
+
+          
+            if (moviesjs[i].year < 2000) {
+                nli.classList.add('ninties')
+            }
+            if (moviesjs[i].year >= 2000) {
+                nli.classList.add('twenties')
+            }
+
+            nli.appendChild(nh1);
+            nli.appendChild(nh4);
+            nli.appendChild(nh3);
+            nli.appendChild(nh2);
+        
+            nli.appendChild(nh5);
+            nli.appendChild(nh6);
+           
+        if (moviesjs[i].year < 2000) {
+           var ul= document.getElementById("d2");
+           var ninties = ul.appendChild(nli)
+            }
+        else{
+            var ul= document.getElementById("d3");
+           var twenties = ul.appendChild(nli)
+        }    
+        //console.log(ul)
+        }    
+    </script>
+</body>
+
+</html>
