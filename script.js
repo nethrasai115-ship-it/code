@@ -1,8 +1,6 @@
 var arr = [];
 var wicketcount = 0;
 var balls = 0;
-var over = 0,
-    overballs = 0;
 var totalscore;
 function addscore(n) {    
     if (n == "W") {
@@ -44,4 +42,5 @@ function genuiscore() {
 
     document.getElementById("wickets").innerText = wicketcount;
     document.getElementById("points").innerText = totalscore;
+
 }
