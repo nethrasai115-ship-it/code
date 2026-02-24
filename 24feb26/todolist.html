@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" id="val" >
+    <button onclick="addTodo()" id="btn">Add Todo</button>
+    <ul id="d1" ></ul>
+    <script>
+        var todos = []
+        function addTodo() {
+            var newTodo = document.getElementById('val').value;
+            todos.push(newTodo)
+            genUI();
+            document.getElementById("val").value = ""
+        }
+       
+        function genUI() {
+            document.getElementById("d1").innerHTML = ""
+            for (let i = 0; i <= todos.length - 1; i++) {
+                var val = document.createElement("li")
+                val.innerText = todos[i]
+                var delbtn = document.createElement("button")
+                delbtn.innerText = "delete"
+                delbtn.addEventListener("click", function () { delTodo(i) })
+                val.appendChild(delbtn)
+
+                document.getElementById("d1").appendChild(val)
+            }
+          
+        }
+         function delTodo(index) {
+            todos.splice(index, 1)
+            console.log(todos);
+            genUI();
+        }
+        genUI()
+       
+    </script>
+</body>
+</html>
