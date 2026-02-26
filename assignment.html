@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table border="2">
+        <thead >
+            <th onclick="sort('id')" >id</th>
+            <th onclick="sort('name')">name</th>
+            <th onclick="sort('caloriesPerServing')">calories</th>
+            <th onclick="sort('rating')">rating</th>
+            <th onclick="sort('reviewCount')">review</th>
+            <th onclick="sort('cookTimeMinutes')">cooktime</th>
+        </thead>
+        <tbody id="tablebody"></tbody>
+    </table>
+    <button id="prev" onclick="prev()" >Previous</button>
+    <button id="Next" onclick="next()">Next</button>
+   
+      
+    <script>
+        recipies=[]
+        var n=0
+        var totla1=0
+       
+         function genui(recipies) {
+                document.getElementById("tablebody").innerHTML=" "
+                recipies.forEach(function (recipe) {
+                    document.getElementById("tablebody").innerHTML +=
+                    `<tr>
+                        <td>${recipe.id}</td>
+                        <td>${recipe.name}</td>
+                        <td>${recipe.caloriesPerServing}</td>
+                        <td>${recipe.rating}</td>
+                        <td>${recipe.reviewCount}</td>
+                        <td>${recipe.cookTimeMinutes}</td>
+                    </tr>` 
+                
+                    
+                                 
+            })
+        } 
+ 
+         function next(){
+          n=n+10
+          getrecip()  
+         }    
+         function prev(){
+            n=n-10
+            getrecip()
+         }
+         function sort(e){
+            recipies.sort(function(a,b){
+                if(a[e]>b[e]){
+                    return 1
+                }
+                else{
+                    return -1
+                }
+            })
+            genui(recipies)
+         }      
+               
+        function getrecip(){
+     
+        fetch(`https://dummyjson.com/recipes?limit=10&skip=${n-10}`)
+        .then(function(res){return res.json()})
+        .then(function(data){
+           recipies=data.recipes
+         
+           genui(recipies)
+        console.log(data)
+    console.log(total.recipies) })
+
+        }
+        getrecip();
+    </script>
+</body>
+</html>
